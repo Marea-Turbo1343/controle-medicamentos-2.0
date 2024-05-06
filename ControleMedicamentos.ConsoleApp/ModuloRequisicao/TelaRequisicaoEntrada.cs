@@ -1,15 +1,15 @@
 ﻿using ControleMedicamentos.ConsoleApp.Compartilhado;
 using ControleMedicamentos.ConsoleApp.ModuloMedicamento;
-using ControleMedicamentos.ConsoleApp.ModuloPaciente;
+using ControleMedicamentos.ConsoleApp.ModuloFornecedor;
 
 namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
 {
-    internal class TelaRequisicaoSaida : TelaBase
+    internal class TelaRequisicaoEntrada : TelaBase
     {
-        public TelaPaciente telaPaciente = null;
+        public TelaFornecedor telaFornecedor = null;
         public TelaMedicamento telaMedicamento = null;
 
-        public RepositorioPaciente repositorioPaciente = null;
+        public RepositorioFornecedor repositorioFornecedor = null;
         public RepositorioMedicamento repositorioMedicamento = null;
 
         public override void Registrar()
@@ -20,7 +20,7 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
 
             Console.WriteLine();
 
-            RequisicaoSaida entidade = (RequisicaoSaida)ObterRegistro();
+            RequisicaoEntrada entidade = (RequisicaoEntrada)ObterRegistro();
 
             string[] erros = entidade.Validar();
 
@@ -30,11 +30,11 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
                 return;
             }
 
-            bool conseguiuRetirar = entidade.RetirarMedicamento();
+            bool conseguiuRetirar = entidade.IncluirMedicamento();
 
             if (!conseguiuRetirar)
             {
-                ExibirMensagem("A quantidade de retirada informada não está disponível.", ConsoleColor.DarkYellow);
+                ExibirMensagem("A quantidade de inclusão informada não está disponível.", ConsoleColor.DarkYellow);
                 return;
             }
 
@@ -49,19 +49,19 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
             {
                 ApresentarCabecalho();
 
-                Console.WriteLine("Visualizando Requisições de Saída...");
+                Console.WriteLine("Visualizando Requisições de Entrada...");
             }
 
             Console.WriteLine();
 
             Console.WriteLine(
                 "{0, -10} | {1, -15} | {2, -15} | {3, -20} | {4, -5}",
-                "Id", "Medicamento", "Paciente", "Data de Requisição", "Quantidade"
+                "Id", "Medicamento", "Fornecedor", "Data de Requisição", "Quantidade"
             );
 
             Entidade[] requisicoesCadastradas = repositorio.SelecionarTodos();
 
-            foreach (RequisicaoSaida requisicao in requisicoesCadastradas)
+            foreach (RequisicaoEntrada requisicao in requisicoesCadastradas)
             {
                 if (requisicao == null)
                     continue;
@@ -70,9 +70,9 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
                     "{0, -10} | {1, -15} | {2, -15} | {3, -20} | {4, -5}",
                     requisicao.Id,
                     requisicao.Medicamento.Nome,
-                    requisicao.Paciente.Nome,
+                    requisicao.Fornecedor.Nome,
                     requisicao.DataRequisicao.ToShortDateString(),
-                    requisicao.QuantidadeRetirada
+                    requisicao.QuantidadeEntrada
                 );
             }
 
@@ -89,17 +89,18 @@ namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
 
             Medicamento medicamentoSelecionado = (Medicamento)repositorioMedicamento.SelecionarPorId(idMedicamento);
 
-            telaPaciente.VisualizarRegistros(false);
+            telaFornecedor.VisualizarRegistros(false);
 
-            Console.Write("Digite o ID do paciente requisitante: ");
-            int idPaciente = Convert.ToInt32(Console.ReadLine());
 
-            Paciente pacienteSelecionado = (Paciente)repositorioPaciente.SelecionarPorId(idPaciente);
+            Console.Write("Digite o ID do fornecedor requisitante: ");
+            int idFornecedor = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Digite a quantidade do medicamente que deseja retirar: ");
+            Fornecedor fornecedorSelecionado = (Fornecedor)repositorioFornecedor.SelecionarPorId(idFornecedor);
+
+            Console.Write("Digite a quantidade do medicamente que deseja adicionar: ");
             int quantidade = Convert.ToInt32(Console.ReadLine());
 
-            RequisicaoSaida novaRequisicao = new RequisicaoSaida(medicamentoSelecionado, pacienteSelecionado, quantidade);
+            RequisicaoEntrada novaRequisicao = new RequisicaoEntrada(medicamentoSelecionado, fornecedorSelecionado, quantidade);
 
             return novaRequisicao;
         }

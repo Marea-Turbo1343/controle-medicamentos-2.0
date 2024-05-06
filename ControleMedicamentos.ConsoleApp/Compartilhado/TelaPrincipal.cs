@@ -12,9 +12,11 @@
 
             Console.WriteLine();
 
-            Console.WriteLine("1 - Cadastro de Pacientes");
-            Console.WriteLine("2 - Cadastro de Medicamentos");
-            Console.WriteLine("3 - Cadastro de Requisições de Saída");
+            Console.WriteLine("1 - Controle de Pacientes");
+            Console.WriteLine("2 - Controle de Medicamentos");
+            Console.WriteLine("3 - Controle de Fornecedores");
+            Console.WriteLine("4 - Controle de Requisições de Entrada");
+            Console.WriteLine("5 - Controle de Requisições de Saída");
 
             Console.WriteLine("S - Sair");
 

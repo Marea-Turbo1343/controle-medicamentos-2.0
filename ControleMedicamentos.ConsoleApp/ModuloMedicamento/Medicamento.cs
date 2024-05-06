@@ -2,7 +2,7 @@
 
 namespace ControleMedicamentos.ConsoleApp.ModuloMedicamento
 {
-    internal class Medicamento : EntidadeBase
+    internal class Medicamento : Entidade
     {
         public Medicamento(string nome, string descricao, string lote, DateTime dataValidade)
         {
@@ -43,6 +43,5 @@ namespace ControleMedicamentos.ConsoleApp.ModuloMedicamento
 
             return errosFiltrados;
         }
-
     }
 }

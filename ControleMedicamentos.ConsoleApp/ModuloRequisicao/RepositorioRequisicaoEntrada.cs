@@ -2,7 +2,7 @@
 
 namespace ControleMedicamentos.ConsoleApp.ModuloRequisicao
 {
-    internal class RepositorioRequisicaoSaida : Repositorio
+    internal class RepositorioRequisicaoEntrada : Repositorio
     {
     }
 }

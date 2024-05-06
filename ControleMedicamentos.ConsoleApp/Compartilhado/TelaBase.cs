@@ -3,15 +3,19 @@
     internal abstract class TelaBase
     {
         public string tipoEntidade = "";
-        public RepositorioBase repositorio = null;
+        public Repositorio repositorio = null;
 
         public char ApresentarMenu()
         {
             Console.Clear();
 
-            Console.WriteLine("----------------------------------------");
-            Console.WriteLine($"        Gestão de {tipoEntidade}s        ");
-            Console.WriteLine("----------------------------------------");
+            string titulo = $"Gestão de {tipoEntidade}s";
+            int larguraLinha = 40;
+            int padding = (larguraLinha - titulo.Length) / 2;
+
+            Console.WriteLine(new string('-', larguraLinha));
+            Console.WriteLine("|" + titulo.PadLeft(padding + titulo.Length).PadRight(larguraLinha - 2) + "|");
+            Console.WriteLine(new string('-', larguraLinha));
 
             Console.WriteLine();
 
@@ -38,7 +42,7 @@
 
             Console.WriteLine();
 
-            EntidadeBase entidade = ObterRegistro();
+            Entidade entidade = ObterRegistro();
 
             string[] erros = entidade.Validar();
 
@@ -74,7 +78,7 @@
 
             Console.WriteLine();
 
-            EntidadeBase entidade = ObterRegistro();
+            Entidade entidade = ObterRegistro();
 
             string[] erros = entidade.Validar();
 
@@ -162,6 +166,6 @@
             Console.ReadLine();
         }
 
-        protected abstract EntidadeBase ObterRegistro();
+        protected abstract Entidade ObterRegistro();
     }
 }

@@ -20,7 +20,7 @@ namespace ControleMedicamentos.ConsoleApp.ModuloMedicamento
                 "Id", "Nome", "Quantidade"
             );
 
-            EntidadeBase[] medicamentosCadastrados = repositorio.SelecionarTodos();
+            Entidade[] medicamentosCadastrados = repositorio.SelecionarTodos();
 
             foreach (Medicamento medicamento in medicamentosCadastrados)
             {
@@ -37,7 +37,7 @@ namespace ControleMedicamentos.ConsoleApp.ModuloMedicamento
             Console.WriteLine();
         }
 
-        protected override EntidadeBase ObterRegistro()
+        protected override Entidade ObterRegistro()
         {
             Console.Write("Digite o nome: ");
             string nome = Console.ReadLine();

@@ -2,7 +2,7 @@
 
 namespace ControleMedicamentos.ConsoleApp.ModuloMedicamento
 {
-    internal class RepositorioMedicamento : Repositorio
+    internal class RepositorioFornecedor : Repositorio
     {
     }
 }
