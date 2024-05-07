@@ -8,7 +8,7 @@
         public char ApresentarMenu()
         {
             Console.Clear();
-
+            //asdikjhbasdijhbasdihjgasdijhasidjhasdij
             string titulo = $"Gestão de {tipoEntidade}s";
             int larguraLinha = 40;
             int padding = (larguraLinha - titulo.Length) / 2;
