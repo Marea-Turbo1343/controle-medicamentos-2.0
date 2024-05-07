@@ -8,6 +8,7 @@ namespace ControleMedicamentos.ConsoleApp
 {
     public class Program
     {
+        // teste dessa caceta
         static void Main(string[] args)
         {
             RepositorioPaciente repositorioPaciente = new RepositorioPaciente();
